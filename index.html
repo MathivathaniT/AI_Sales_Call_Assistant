@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Sales Call Assistant</title>
+    <style>
+        body{
+            font-family: Arial;
+            background:#f5f5f5;
+            padding:40px;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        textarea{
+            width:100%;
+            height:220px;
+            padding:10px;
+            margin-top:10px;
+        }
+
+        button{
+            margin-top:15px;
+            padding:10px 20px;
+            background:#007bff;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        .result{
+            margin-top:30px;
+            background:#f0f0f0;
+            padding:20px;
+            border-radius:8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AI Sales Call Assistant</h1>
+
+    <form method="POST">
+        <label>Paste Sales Call Conversation:</label>
+        <textarea name="conversation" required></textarea>
+
+        <button type="submit">Analyze Conversation</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Analysis Result</h2>
+
+        <h3>Summary</h3>
+        <p>{{ result.summary }}</p>
+
+        <h3>Sentiment</h3>
+        <p>{{ result.sentiment }}</p>
+
+        <h3>AI Suggestions</h3>
+        <ul>
+            {% for item in result.suggestions %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
